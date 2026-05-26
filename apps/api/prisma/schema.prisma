@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Player {
+  id            String    @id @default(uuid())
+  deviceId      String    @unique
+  username      String    @unique
+  avatarUrl     String?
+  isPublic      Boolean   @default(true)
+  totalPoints   Int       @default(0)
+  gamesPlayed   Int       @default(0)
+  gamesWon      Int       @default(0)
+  medal         Medal     @default(NONE)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  roomsCreated  Room[]        @relation("RoomCreator")
+  gameSessions  GamePlayer[]
+  scores        GameScore[]
+}
+
+enum Medal {
+  NONE
+  BRONZE
+  SILVER
+  GOLD
+}
+
+model Room {
+  id            String      @id @default(uuid())
+  code          String      @unique
+  name          String
+  isPublic      Boolean     @default(true)
+  gameType      GameType
+  maxPlayers    Int
+  status        RoomStatus  @default(WAITING)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Relations
+  creatorId     String
+  creator       Player      @relation("RoomCreator", fields: [creatorId], references: [id])
+  game          Game?
+}
+
+enum RoomStatus {
+  WAITING
+  STARTING
+  IN_PROGRESS
+  FINISHED
+}
+
+enum GameType {
+  RUMMY
+}
+
+model Game {
+  id            String      @id @default(uuid())
+  roomId        String      @unique
+  room          Room        @relation(fields: [roomId], references: [id])
+  gameType      GameType
+  status        GameStatus  @default(IN_PROGRESS)
+  currentRound  Int         @default(1)
+  totalRounds   Int         @default(3)
+  startedAt     DateTime    @default(now())
+  finishedAt    DateTime?
+
+  // Relations
+  players       GamePlayer[]
+  scores        GameScore[]
+}
+
+enum GameStatus {
+  IN_PROGRESS
+  FINISHED
+  CANCELLED
+}
+
+model GamePlayer {
+  id            String    @id @default(uuid())
+  gameId        String
+  game          Game      @relation(fields: [gameId], references: [id])
+  playerId      String
+  player        Player    @relation(fields: [playerId], references: [id])
+  seatPosition  Int
+  isConnected   Boolean   @default(true)
+  joinedAt      DateTime  @default(now())
+
+  @@unique([gameId, playerId])
+  @@unique([gameId, seatPosition])
+}
+
+model GameScore {
+  id            String    @id @default(uuid())
+  gameId        String
+  game          Game      @relation(fields: [gameId], references: [id])
+  playerId      String
+  player        Player    @relation(fields: [playerId], references: [id])
+  round         Int
+  points        Int
+  isWinner      Boolean   @default(false)
+  isRummySec    Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+
+  @@unique([gameId, playerId, round])
+}
