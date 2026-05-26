@@ -4,6 +4,7 @@ import { PrismaModule } from './common/prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { PlayersModule } from './players/players.module';
 import { RoomsModule } from './rooms/rooms.module';
+import { GatewayModule } from './gateway/gateway.module';
 
 @Module({
   imports: [
@@ -21,6 +22,8 @@ import { RoomsModule } from './rooms/rooms.module';
     PlayersModule,
 
     RoomsModule,
+
+    GatewayModule,
 
     // Les modules métier seront ajoutés ici au fur et à mesure :
     // AuthModule,
