@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
+import { PlayersModule } from './players/players.module';
 
 @Module({
   imports: [
@@ -15,6 +16,8 @@ import { AuthModule } from './auth/auth.module';
     PrismaModule,
 
     AuthModule,
+
+    PlayersModule,
 
     // Les modules métier seront ajoutés ici au fur et à mesure :
     // AuthModule,
