@@ -1,0 +1,26 @@
+{
+  "name": "kirenina",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Kirenina — Plateforme de jeux multijoueur en ligne",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "format": "prettier --write \"**/*.{ts,tsx,vue,js,json,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,vue,js,json,md,css}\"",
+    "db:dev": "docker compose -f docker-compose.dev.yml up -d",
+    "db:stop": "docker compose -f docker-compose.dev.yml down",
+    "db:reset": "docker compose -f docker-compose.dev.yml down -v"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "prettier": "^3.5.0",
+    "typescript": "^5.8.0"
+  },
+  "packageManager": "pnpm@10.25.0",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
