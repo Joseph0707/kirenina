@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './common/prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -12,6 +13,8 @@ import { PrismaModule } from './common/prisma/prisma.module';
 
     // Prisma (base de données)
     PrismaModule,
+
+    AuthModule,
 
     // Les modules métier seront ajoutés ici au fur et à mesure :
     // AuthModule,
