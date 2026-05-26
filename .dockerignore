@@ -1,0 +1,6 @@
+node_modules
+.git
+.nuxt
+dist
+build
+docker-data

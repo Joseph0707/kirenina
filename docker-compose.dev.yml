@@ -31,3 +31,34 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: kirenina-app-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # Frontend
+      - "3001:3001" # Backend API
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://kirenina:kirenina_dev_2024@postgres:5432/kirenina?schema=public
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=kirenina-dev-secret-change-in-production
+    volumes:
+      # Synchroniser le code local avec le conteneur pour le Hot Reload
+      - .:/app
+      # Ignorer les node_modules locaux pour forcer l'utilisation de ceux du conteneur (compatibilité Windows/Linux)
+      - /app/node_modules
+      - /app/apps/api/node_modules
+      - /app/apps/web/node_modules
+      - /app/packages/shared-types/node_modules
+      - /app/packages/game-logic/node_modules
+      - /app/packages/utils/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
