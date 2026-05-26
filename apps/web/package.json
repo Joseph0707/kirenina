@@ -1,0 +1,8 @@
+{
+  "name": "@kirenina/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Nuxt will be installed soon!'"
+  }
+}
