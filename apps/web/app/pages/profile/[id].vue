@@ -8,10 +8,10 @@
     <!-- Error State: Not Found / Private Profile -->
     <div v-else-if="notFound" class="max-w-md mx-auto bg-gray-800 border border-gray-700 rounded-xl p-8 text-center shadow-2xl">
       <div class="text-6xl mb-4">🔒</div>
-      <h2 class="text-2xl font-bold mb-2 text-white">{{ $t('public_profile.not_found_title') }}</h2>
-      <p class="text-gray-400 mb-6">{{ $t('public_profile.not_found_desc') }}</p>
+      <h2 class="text-2xl font-bold mb-2 text-white">{{ t('public_profile.not_found_title') }}</h2>
+      <p class="text-gray-400 mb-6">{{ t('public_profile.not_found_desc') }}</p>
       <button class="bg-primary hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-colors w-full" @click="navigateTo('/')">
-        {{ $t('public_profile.back_home') }}
+        {{ t('public_profile.back_home') }}
       </button>
     </div>
 
@@ -30,32 +30,32 @@
         </h2>
         
         <div class="inline-flex items-center gap-1.5 bg-gray-900 px-3 py-1 rounded-full text-xs text-gray-400 border border-gray-750 mb-6">
-          <span>📅</span> {{ $t('public_profile.member_since') }} {{ formatDate(player.createdAt) }}
+          <span>📅</span> {{ t('public_profile.member_since') }} {{ formatDate(player.createdAt) }}
         </div>
 
         <div class="flex justify-center items-center gap-2 bg-primary/10 border border-primary/20 p-3 rounded-lg">
           <span class="text-2xl">{{ getMedalEmoji(player.medal) }}</span>
-          <span class="font-bold text-primary">{{ $t(`profile.medals.${player.medal}`) }}</span>
+          <span class="font-bold text-primary">{{ t(`profile.medals.${player.medal}`) }}</span>
         </div>
       </div>
 
       <!-- Right Column: Stats Grid -->
       <div class="md:col-span-2 bg-gray-800 border border-gray-700 rounded-xl p-6 shadow-xl">
         <h2 class="text-2xl font-display font-bold text-primary mb-6 flex items-center gap-2">
-          <span>📊</span> {{ $t('profile.stats_title') }}
+          <span>📊</span> {{ t('profile.stats_title') }}
         </h2>
 
         <div class="grid grid-cols-2 gap-4">
           <!-- Points Card -->
           <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750">
-            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.points') }}</span>
+            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.points') }}</span>
             <div class="text-3xl font-extrabold text-primary mt-1">{{ player.totalPoints }}</div>
           </div>
 
           <!-- Win Rate Card -->
           <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750 flex items-center justify-between">
             <div>
-              <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.win_rate') }}</span>
+              <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.win_rate') }}</span>
               <div class="text-3xl font-extrabold text-secondary mt-1">{{ player.winRate }}%</div>
             </div>
             <div class="relative h-12 w-12 flex items-center justify-center">
@@ -71,13 +71,13 @@
 
           <!-- Games Played Card -->
           <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750">
-            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.games_played') }}</span>
+            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.games_played') }}</span>
             <div class="text-3xl font-extrabold text-white mt-1">{{ player.gamesPlayed }}</div>
           </div>
 
           <!-- Games Won Card -->
           <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750">
-            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.games_won') }}</span>
+            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.games_won') }}</span>
             <div class="text-3xl font-extrabold text-white mt-1">{{ player.gamesWon }}</div>
           </div>
         </div>
@@ -88,9 +88,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from '~/composables/useI18n'
 
 const route = useRoute()
 const { fetchApi } = useApi()
+const { t } = useI18n()
 
 const player = ref<any | null>(null)
 const loading = ref(true)

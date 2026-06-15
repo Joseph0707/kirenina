@@ -145,6 +145,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useI18n } from '~/composables/useI18n'
 
 const { t } = useI18n()
 const { fetchApi } = useApi()

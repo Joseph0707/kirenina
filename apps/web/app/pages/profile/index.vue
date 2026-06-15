@@ -9,13 +9,13 @@
       <!-- Left column: Profile Edit -->
       <div class="md:col-span-1 bg-gray-800 border border-gray-700 rounded-xl p-6 shadow-xl h-fit">
         <h2 class="text-2xl font-display font-bold text-primary mb-6 flex items-center gap-2">
-          <span>⚙️</span> {{ $t('profile.edit_profile') }}
+          <span>⚙️</span> {{ t('profile.edit_profile') }}
         </h2>
 
         <form @submit.prevent="saveProfile" class="space-y-6">
           <!-- Current Avatar display & selection -->
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-3">{{ $t('profile.select_avatar') }}</label>
+            <label class="block text-sm font-medium text-gray-300 mb-3">{{ t('profile.select_avatar') }}</label>
             <div class="flex justify-center mb-4">
               <div class="text-6xl p-4 bg-gray-900 border-2 border-primary/40 rounded-full w-24 h-24 flex items-center justify-center shadow-inner select-none">
                 {{ form.avatarUrl || '👤' }}
@@ -38,7 +38,7 @@
 
           <!-- Username Input -->
           <div>
-            <label for="profile-username" class="block text-sm font-medium text-gray-300 mb-1">{{ $t('profile.username') }}</label>
+            <label for="profile-username" class="block text-sm font-medium text-gray-300 mb-1">{{ t('profile.username') }}</label>
             <input 
               id="profile-username"
               v-model="form.username" 
@@ -52,7 +52,7 @@
 
           <!-- Visibility Toggle -->
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">{{ $t('profile.visibility') }}</label>
+            <label class="block text-sm font-medium text-gray-300 mb-2">{{ t('profile.visibility') }}</label>
             <div class="space-y-2">
               <label class="flex items-center gap-3 cursor-pointer bg-gray-900/40 p-3 rounded-lg border border-gray-750 hover:border-gray-600 transition-colors">
                 <input 
@@ -62,7 +62,7 @@
                   class="text-primary focus:ring-primary"
                 />
                 <div>
-                  <span class="text-sm font-semibold text-white block">{{ $t('profile.public') }}</span>
+                  <span class="text-sm font-semibold text-white block">{{ t('profile.public') }}</span>
                 </div>
               </label>
               
@@ -74,7 +74,7 @@
                   class="text-primary focus:ring-primary"
                 />
                 <div>
-                  <span class="text-sm font-semibold text-white block">{{ $t('profile.private') }}</span>
+                  <span class="text-sm font-semibold text-white block">{{ t('profile.private') }}</span>
                 </div>
               </label>
             </div>
@@ -96,7 +96,7 @@
             class="w-full bg-primary hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             <span v-if="saving" class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></span>
-            <span>{{ saving ? $t('profile.saving') : $t('profile.save') }}</span>
+            <span>{{ saving ? t('profile.saving') : t('profile.save') }}</span>
           </button>
         </form>
       </div>
@@ -105,21 +105,21 @@
       <div class="md:col-span-2 space-y-6">
         <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 shadow-xl">
           <h2 class="text-2xl font-display font-bold text-primary mb-6 flex items-center gap-2">
-            <span>📊</span> {{ $t('profile.stats_title') }}
+            <span>📊</span> {{ t('profile.stats_title') }}
           </h2>
 
           <div class="grid grid-cols-2 gap-4">
             <!-- Points Card -->
             <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750">
-              <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.points') }}</span>
+              <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.points') }}</span>
               <div class="text-3xl font-extrabold text-primary mt-1">{{ user.totalPoints }}</div>
             </div>
 
             <!-- Medal Card -->
             <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750 flex items-center justify-between">
               <div>
-                <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.medal') }}</span>
-                <div class="text-xl font-bold mt-1 text-white">{{ $t(`profile.medals.${user.medal}`) }}</div>
+                <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.medal') }}</span>
+                <div class="text-xl font-bold mt-1 text-white">{{ t(`profile.medals.${user.medal}`) }}</div>
               </div>
               <div class="text-4xl">
                 {{ getMedalEmoji(user.medal) }}
@@ -128,14 +128,14 @@
 
             <!-- Games Played Card -->
             <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750">
-              <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.games_played') }}</span>
+              <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.games_played') }}</span>
               <div class="text-3xl font-extrabold text-white mt-1">{{ user.gamesPlayed }}</div>
             </div>
 
             <!-- Win Rate Card -->
             <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-750 flex items-center justify-between">
               <div>
-                <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ $t('profile.win_rate') }}</span>
+                <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">{{ t('profile.win_rate') }}</span>
                 <div class="text-3xl font-extrabold text-secondary mt-1">{{ user.winRate }}%</div>
               </div>
               <!-- Mini progress circle -->
@@ -170,6 +170,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, watchEffect } from 'vue'
+import { useI18n } from '~/composables/useI18n'
 
 const { user, updateProfile, checkAuth } = useAuth()
 const { t } = useI18n()

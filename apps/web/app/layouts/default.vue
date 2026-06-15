@@ -6,9 +6,9 @@
       </NuxtLink>
       <div class="flex items-center gap-6">
         <nav class="flex gap-4 items-center">
-          <NuxtLink to="/" class="hover:text-primary transition-colors text-sm font-medium">{{ $t('nav.home') }}</NuxtLink>
-          <NuxtLink to="/leaderboard" class="hover:text-primary transition-colors text-sm font-medium">{{ $t('nav.leaderboard') }}</NuxtLink>
-          <NuxtLink to="/games/rummy" class="hover:text-primary transition-colors text-sm font-medium">{{ $t('nav.rummy') }}</NuxtLink>
+          <NuxtLink to="/" class="hover:text-primary transition-colors text-sm font-medium">{{ t('nav.home') }}</NuxtLink>
+          <NuxtLink to="/leaderboard" class="hover:text-primary transition-colors text-sm font-medium">{{ t('nav.leaderboard') }}</NuxtLink>
+          <NuxtLink to="/games/rummy" class="hover:text-primary transition-colors text-sm font-medium">{{ t('nav.rummy') }}</NuxtLink>
         </nav>
         
         <div class="h-4 w-[1px] bg-gray-800"></div>
@@ -46,12 +46,13 @@
     </main>
     
     <footer class="p-6 border-t border-gray-800 text-center text-xs text-gray-500 max-w-7xl w-full mx-auto">
-      &copy; {{ new Date().getFullYear() }} Kirenina. {{ $t('footer.rights') }}
+      &copy; {{ new Date().getFullYear() }} Kirenina. {{ t('footer.rights') }}
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-const { locale, setLocale } = useI18n()
+import { useI18n } from '~/composables/useI18n'
+const { t, locale, setLocale } = useI18n()
 const { user } = useAuth()
 </script>
