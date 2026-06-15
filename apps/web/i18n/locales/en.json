@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Home",
+    "rummy": "Rummy",
+    "profile": "My Profile",
+    "leaderboard": "Leaderboard"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "onboarding": {
+    "title": "Welcome to Kirenina",
+    "subtitle": "Choose a username to start playing.",
+    "username_label": "Username / Nickname",
+    "placeholder": "e.g., ProPlayer",
+    "play": "Play",
+    "loading": "Connecting...",
+    "error_taken": "This username is already taken. Please choose another one.",
+    "error_generic": "An error occurred during initialization. Please try again."
+  },
+  "home": {
+    "title": "Multiplayer Game Platform",
+    "subtitle": "Play Rummy in 3D with your friends. No registration, free, and in real time.",
+    "popular": "Popular",
+    "rummy_title": "Rummy",
+    "rummy_desc": "The classic card game in a 104-card version with 3D animations.",
+    "play_rummy": "Play Rummy",
+    "top_players": "Top Players",
+    "pts": "pts",
+    "view_leaderboard": "View full leaderboard"
+  },
+  "profile": {
+    "title": "My Profile",
+    "edit_profile": "Edit Profile",
+    "username": "Username",
+    "visibility": "Profile Visibility",
+    "public": "Public (visible on leaderboard)",
+    "private": "Private (hidden from leaderboard)",
+    "select_avatar": "Choose an avatar",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "success": "Profile updated successfully!",
+    "stats_title": "Game Statistics",
+    "games_played": "Games Played",
+    "games_won": "Games Won",
+    "win_rate": "Win Rate",
+    "points": "Accumulated Points",
+    "medal": "Current Medal",
+    "medals": {
+      "NONE": "None",
+      "BRONZE": "Bronze",
+      "SILVER": "Silver",
+      "GOLD": "Gold"
+    }
+  },
+  "public_profile": {
+    "title": "{username}'s Profile",
+    "not_found_title": "Profile Not Found or Private",
+    "not_found_desc": "This player does not exist or has chosen to keep their profile private.",
+    "back_home": "Back to Home",
+    "member_since": "Member since"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "subtitle": "Find and compare the top players on the platform.",
+    "search_placeholder": "Search player...",
+    "rank": "Rank",
+    "player": "Player",
+    "games_won": "Wins",
+    "points": "Points",
+    "medal": "Medal",
+    "no_players": "No players found."
+  }
+}

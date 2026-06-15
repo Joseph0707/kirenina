@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "rummy": "Rami",
+    "profile": "Mon Profil",
+    "leaderboard": "Classement"
+  },
+  "footer": {
+    "rights": "Tous droits réservés."
+  },
+  "onboarding": {
+    "title": "Bienvenue sur Kirenina",
+    "subtitle": "Choisissez un pseudo pour commencer à jouer.",
+    "username_label": "Nom d'utilisateur / Pseudo",
+    "placeholder": "Ex: JoueurPro",
+    "play": "Jouer",
+    "loading": "Connexion en cours...",
+    "error_taken": "Ce nom de joueur est déjà pris. Veuillez en choisir un autre.",
+    "error_generic": "Une erreur est survenue lors de l'initialisation. Réessayez."
+  },
+  "home": {
+    "title": "Plateforme de Jeux Multijoueur",
+    "subtitle": "Jouez au Rami en 3D avec vos amis. Sans inscription, gratuit et en temps réel.",
+    "popular": "Populaire",
+    "rummy_title": "Rami (Rummy)",
+    "rummy_desc": "Le classique jeu de cartes en version 104 cartes avec animations 3D.",
+    "play_rummy": "Jouer au Rami",
+    "top_players": "Top Joueurs",
+    "pts": "pts",
+    "view_leaderboard": "Voir tout le classement"
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "edit_profile": "Modifier le Profil",
+    "username": "Pseudo",
+    "visibility": "Visibilité du Profil",
+    "public": "Public (visible sur le classement)",
+    "private": "Privé (invisible sur le classement)",
+    "select_avatar": "Choisir un avatar",
+    "save": "Enregistrer les modifications",
+    "saving": "Enregistrement...",
+    "success": "Profil mis à jour avec succès !",
+    "stats_title": "Statistiques de Jeu",
+    "games_played": "Parties Jouées",
+    "games_won": "Parties Gagnées",
+    "win_rate": "Taux de Victoire",
+    "points": "Points Cumulés",
+    "medal": "Médaille Actuelle",
+    "medals": {
+      "NONE": "Aucune",
+      "BRONZE": "Bronze",
+      "SILVER": "Argent",
+      "GOLD": "Or"
+    }
+  },
+  "public_profile": {
+    "title": "Profil de {username}",
+    "not_found_title": "Profil Introuvable ou Privé",
+    "not_found_desc": "Ce joueur n'existe pas ou a choisi de garder son profil privé.",
+    "back_home": "Retour à l'accueil",
+    "member_since": "Membre depuis le"
+  },
+  "leaderboard": {
+    "title": "Classement Général",
+    "subtitle": "Trouvez et comparez les meilleurs joueurs de la plateforme.",
+    "search_placeholder": "Rechercher un joueur...",
+    "rank": "Rang",
+    "player": "Joueur",
+    "games_won": "Victoires",
+    "points": "Points",
+    "medal": "Médaille",
+    "no_players": "Aucun joueur trouvé."
+  }
+}
