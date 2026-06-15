@@ -77,4 +77,30 @@ export class PlayersService {
       medal: p.medal,
     }));
   }
+
+  async getPublicProfile(playerId: string) {
+    const player = await this.prisma.player.findUnique({
+      where: { id: playerId },
+    });
+
+    if (!player || !player.isPublic) {
+      throw new NotFoundException('Joueur introuvable ou profil privé');
+    }
+
+    const winRate = player.gamesPlayed > 0 
+      ? Math.round((player.gamesWon / player.gamesPlayed) * 100) 
+      : 0;
+
+    return {
+      id: player.id,
+      username: player.username,
+      avatarUrl: player.avatarUrl,
+      totalPoints: player.totalPoints,
+      gamesPlayed: player.gamesPlayed,
+      gamesWon: player.gamesWon,
+      medal: player.medal,
+      winRate,
+      createdAt: player.createdAt,
+    };
+  }
 }

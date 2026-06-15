@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Body, UseGuards, Query } from '@nestjs/common';
+import { Controller, Get, Patch, Body, UseGuards, Query, Param } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { JwtAuthGuard } from '../common/auth/jwt-auth.guard';
 import { CurrentUser, AuthenticatedUser } from '../common/auth/current-user.decorator';
@@ -34,5 +34,10 @@ export class PlayersController {
   getLeaderboard(@Query('limit') limitStr?: string) {
     const limit = limitStr ? parseInt(limitStr, 10) : 10;
     return this.playersService.getLeaderboard(isNaN(limit) ? 10 : limit);
+  }
+
+  @Get(':id')
+  getPublicProfile(@Param('id') id: string) {
+    return this.playersService.getPublicProfile(id);
   }
 }
