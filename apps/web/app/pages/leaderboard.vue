@@ -3,10 +3,10 @@
     <!-- Header -->
     <div class="text-center mb-10">
       <h2 class="text-4xl font-display font-bold text-white mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-        {{ $t('leaderboard.title') }}
+        {{ t('leaderboard.title') }}
       </h2>
       <p class="text-gray-400 max-w-lg mx-auto">
-        {{ $t('leaderboard.subtitle') }}
+        {{ t('leaderboard.subtitle') }}
       </p>
     </div>
 
@@ -24,7 +24,7 @@
           <div class="text-5xl mt-2 select-none">{{ podium[1].avatarUrl || '👤' }}</div>
           <div class="font-bold text-white mt-2 truncate w-full px-1">{{ podium[1].username }}</div>
           <div class="text-gray-400 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-            <span>🏆</span> {{ podium[1].gamesWon }} {{ $t('leaderboard.games_won').toLowerCase() }}
+            <span>🏆</span> {{ podium[1].gamesWon }} {{ t('leaderboard.games_won').toLowerCase() }}
           </div>
           <div class="bg-gray-700/50 text-gray-300 font-bold px-3 py-1 rounded-full text-sm mt-2">
             {{ podium[1].totalPoints }} pts
@@ -37,7 +37,7 @@
           <div class="text-6xl mt-1 select-none">{{ podium[0].avatarUrl || '👤' }}</div>
           <div class="font-bold text-white text-lg mt-2 truncate w-full px-1">{{ podium[0].username }}</div>
           <div class="text-yellow-400 text-xs font-bold uppercase tracking-wider flex items-center gap-1">
-            <span>🔥</span> {{ podium[0].gamesWon }} {{ $t('leaderboard.games_won').toLowerCase() }}
+            <span>🔥</span> {{ podium[0].gamesWon }} {{ t('leaderboard.games_won').toLowerCase() }}
           </div>
           <div class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 font-bold px-4 py-1.5 rounded-full text-base mt-2">
             {{ podium[0].totalPoints }} pts
@@ -50,7 +50,7 @@
           <div class="text-4xl mt-3 select-none">{{ podium[2].avatarUrl || '👤' }}</div>
           <div class="font-bold text-white mt-2 truncate w-full px-1">{{ podium[2].username }}</div>
           <div class="text-gray-400 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-            <span>🏆</span> {{ podium[2].gamesWon }} {{ $t('leaderboard.games_won').toLowerCase() }}
+            <span>🏆</span> {{ podium[2].gamesWon }} {{ t('leaderboard.games_won').toLowerCase() }}
           </div>
           <div class="bg-gray-700/50 text-gray-300 font-bold px-3 py-1 rounded-full text-xs mt-2">
             {{ podium[2].totalPoints }} pts
@@ -68,7 +68,7 @@
             type="text" 
             v-model="searchQuery"
             class="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-500 shadow-inner"
-            :placeholder="$t('leaderboard.search_placeholder')"
+            :placeholder="t('leaderboard.search_placeholder')"
           />
         </div>
       </div>
@@ -79,11 +79,11 @@
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-gray-900 border-b border-gray-700 text-gray-400 text-xs uppercase font-bold tracking-wider select-none">
-                <th class="py-4 px-6 text-center w-20">{{ $t('leaderboard.rank') }}</th>
-                <th class="py-4 px-6">{{ $t('leaderboard.player') }}</th>
-                <th class="py-4 px-6 text-center">{{ $t('leaderboard.medal') }}</th>
-                <th class="py-4 px-6 text-center w-36">{{ $t('leaderboard.games_won') }}</th>
-                <th class="py-4 px-6 text-right w-36">{{ $t('leaderboard.points') }}</th>
+                <th class="py-4 px-6 text-center w-20">{{ t('leaderboard.rank') }}</th>
+                <th class="py-4 px-6">{{ t('leaderboard.player') }}</th>
+                <th class="py-4 px-6 text-center">{{ t('leaderboard.medal') }}</th>
+                <th class="py-4 px-6 text-center w-36">{{ t('leaderboard.games_won') }}</th>
+                <th class="py-4 px-6 text-right w-36">{{ t('leaderboard.points') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -113,7 +113,7 @@
                 <td class="py-4 px-6 text-center font-bold text-sm">
                   <span v-if="p.medal !== 'NONE'" class="inline-flex items-center gap-1 bg-gray-900 border border-gray-700 px-2.5 py-1 rounded-full text-xs" :class="getMedalBadgeColor(p.medal)">
                     <span>{{ getMedalMiniEmoji(p.medal) }}</span>
-                    <span>{{ $t(`profile.medals.${p.medal}`) }}</span>
+                    <span>{{ t(`profile.medals.${p.medal}`) }}</span>
                   </span>
                   <span v-else class="text-gray-500 font-normal">-</span>
                 </td>
@@ -132,7 +132,7 @@
               <!-- Empty state inside table -->
               <tr v-if="filteredPlayers.length === 0">
                 <td colspan="5" class="py-12 px-6 text-center text-gray-500 font-medium">
-                  {{ $t('leaderboard.no_players') }}
+                  {{ t('leaderboard.no_players') }}
                 </td>
               </tr>
             </tbody>
@@ -146,6 +146,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 
+const { t } = useI18n()
 const { fetchApi } = useApi()
 const { user } = useAuth()
 
