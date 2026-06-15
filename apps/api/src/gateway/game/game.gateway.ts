@@ -138,6 +138,25 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
       // Notifier la room
       this.server.to(`room:${room.id}`).emit('room:playerJoined', { player: newPlayer });
 
+      // Notifier le lobby
+      if (room.isPublic) {
+        const roomItem = {
+          id: room.id,
+          name: room.name,
+          gameType: room.gameType as any,
+          maxPlayers: room.maxPlayers,
+          currentPlayers: playersInRoom.size,
+          status: room.status as any,
+          creatorUsername: room.creator.username,
+          createdAt: room.createdAt.toISOString(),
+        };
+        if (playersInRoom.size === 1) {
+          this.server.to(`lobby:${room.gameType}`).emit('lobby:roomAdded', { room: roomItem });
+        } else {
+          this.server.to(`lobby:${room.gameType}`).emit('lobby:roomUpdated', { room: roomItem });
+        }
+      }
+
       // Envoyer l'état actuel de la room au nouveau joueur
       // (On envoie un event complet ou on le laisse fetcher via REST, mais c'est mieux en WS)
       client.emit('room:updated', {
@@ -201,6 +220,43 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   // ==========================================
+  // LOBBY LOGIC
+  // ==========================================
+
+  @SubscribeMessage('lobby:subscribe')
+  async handleLobbySubscribe(
+    @ConnectedSocket() client: AuthenticatedSocket,
+    @MessageBody() data: { gameType: string },
+  ) {
+    client.join(`lobby:${data.gameType}`);
+    
+    // Fetch active rooms from database
+    const rooms = await this.roomsService.getActiveRooms();
+    
+    // Supplement each room with active player count from our memory cache
+    const enrichedRooms = rooms.map(room => {
+      const playersInRoom = this.roomPlayers.get(room.id);
+      return {
+        ...room,
+        currentPlayers: playersInRoom ? playersInRoom.size : 0,
+      };
+    });
+
+    client.emit('lobby:roomsList', { rooms: enrichedRooms as any });
+    console.log(`📡 Joueur ${client.user.username} inscrit au lobby ${data.gameType}`);
+  }
+
+  @SubscribeMessage('lobby:unsubscribe')
+  handleLobbyUnsubscribe(@ConnectedSocket() client: AuthenticatedSocket) {
+    for (const room of client.rooms) {
+      if (room.startsWith('lobby:')) {
+        client.leave(room);
+      }
+    }
+    console.log(`📡 Joueur ${client.user.username} désinscrit du lobby`);
+  }
+
+  // ==========================================
   // UTILS
   // ==========================================
 
@@ -228,6 +284,24 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
           playerId, 
           graceSeconds: 60 
         });
+
+        // Optionnel : Notifier le lobby
+        this.roomsService.getRoomById(roomId).then(room => {
+          if (room.isPublic) {
+            this.server.to(`lobby:${room.gameType}`).emit('lobby:roomUpdated', {
+              room: {
+                id: room.id,
+                name: room.name,
+                gameType: room.gameType as any,
+                maxPlayers: room.maxPlayers,
+                currentPlayers: players.size,
+                status: room.status as any,
+                creatorUsername: room.creator.username,
+                createdAt: room.createdAt.toISOString(),
+              }
+            });
+          }
+        }).catch(err => console.error(err));
       }
     }
   }

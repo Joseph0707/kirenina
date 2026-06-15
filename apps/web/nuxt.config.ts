@@ -13,5 +13,13 @@ export default defineNuxtConfig({
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3001'
     }
+  },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 100
+      }
+    }
   }
 })

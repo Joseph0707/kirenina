@@ -10,10 +10,14 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT', 3001);
   const corsOrigin = configService.get<string>('CORS_ORIGIN', 'http://localhost:3000');
+  const allowedOrigins = corsOrigin.split(',').map(o => o.trim());
+  if (allowedOrigins.includes('http://localhost:3000') && !allowedOrigins.includes('http://127.0.0.1:3000')) {
+    allowedOrigins.push('http://127.0.0.1:3000');
+  }
 
   // CORS
   app.enableCors({
-    origin: corsOrigin,
+    origin: allowedOrigins,
     credentials: true,
   });
 

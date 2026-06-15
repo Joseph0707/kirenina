@@ -70,5 +70,47 @@
     "points": "Points",
     "medal": "Medal",
     "no_players": "No players found."
+  },
+  "lobby": {
+    "title": "Game Lobby",
+    "subtitle": "Join an ongoing Rummy game or create your own room.",
+    "search_placeholder": "Search room by name or creator...",
+    "create_room": "Create a room",
+    "no_rooms": "No rooms available at the moment. Create one!",
+    "room_name": "Room name",
+    "players": "Players",
+    "status": "Status",
+    "creator": "Creator",
+    "join": "Join",
+    "spectate": "Spectate",
+    "status_waiting": "Waiting",
+    "status_starting": "Starting",
+    "status_in_progress": "In progress",
+    "status_finished": "Finished",
+    "filters": {
+      "all": "All statuses",
+      "waiting": "Waiting",
+      "in_progress": "In progress"
+    }
+  },
+  "create_room_modal": {
+    "title": "Create a New Room",
+    "room_name_label": "Room Name",
+    "room_name_placeholder": "e.g., Friendly Match",
+    "visibility_label": "Visibility",
+    "visibility_public": "Public (visible in lobby)",
+    "visibility_private": "Private (accessible only by code/link)",
+    "max_players_label": "Max Players",
+    "total_rounds_label": "Number of Rounds",
+    "allow_spectators_label": "Allow Spectators",
+    "submit": "Create Room",
+    "cancel": "Cancel",
+    "creating": "Creating..."
+  },
+  "errors": {
+    "socket_connection": "Real-time connection error.",
+    "room_not_found": "The requested room was not found.",
+    "room_full": "The room is already full.",
+    "room_code_invalid": "Invalid or expired access code."
   }
 }

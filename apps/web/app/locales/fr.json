@@ -70,5 +70,47 @@
     "points": "Points",
     "medal": "Médaille",
     "no_players": "Aucun joueur trouvé."
+  },
+  "lobby": {
+    "title": "Lobby de Jeu",
+    "subtitle": "Rejoignez une partie de Rami en cours ou créez votre propre salon.",
+    "search_placeholder": "Rechercher une salle par nom ou créateur...",
+    "create_room": "Créer une salle",
+    "no_rooms": "Aucune salle disponible pour le moment. Créez-en une !",
+    "room_name": "Nom de la salle",
+    "players": "Joueurs",
+    "status": "Statut",
+    "creator": "Créateur",
+    "join": "Rejoindre",
+    "spectate": "Observer",
+    "status_waiting": "En attente",
+    "status_starting": "Lancement",
+    "status_in_progress": "En cours",
+    "status_finished": "Terminé",
+    "filters": {
+      "all": "Tous les statuts",
+      "waiting": "En attente",
+      "in_progress": "En cours"
+    }
+  },
+  "create_room_modal": {
+    "title": "Créer une nouvelle salle",
+    "room_name_label": "Nom de la salle",
+    "room_name_placeholder": "Ex: Partie entre amis",
+    "visibility_label": "Visibilité",
+    "visibility_public": "Public (visible dans le lobby)",
+    "visibility_private": "Privé (accessible uniquement par code/lien)",
+    "max_players_label": "Nombre max de joueurs",
+    "total_rounds_label": "Nombre de manches",
+    "allow_spectators_label": "Autoriser les spectateurs",
+    "submit": "Créer la salle",
+    "cancel": "Annuler",
+    "creating": "Création..."
+  },
+  "errors": {
+    "socket_connection": "Erreur de connexion en temps réel.",
+    "room_not_found": "La salle demandée est introuvable.",
+    "room_full": "La salle est déjà complète.",
+    "room_code_invalid": "Code d'accès invalide ou expiré."
   }
 }

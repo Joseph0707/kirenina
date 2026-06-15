@@ -46,6 +46,7 @@ services:
       - DATABASE_URL=postgresql://kirenina:kirenina_dev_2024@postgres:5432/kirenina?schema=public
       - REDIS_URL=redis://redis:6379
       - JWT_SECRET=kirenina-dev-secret-change-in-production
+      - CI=true
     volumes:
       # Synchroniser le code local avec le conteneur pour le Hot Reload
       - .:/app
@@ -56,6 +57,7 @@ services:
       - /app/packages/shared-types/node_modules
       - /app/packages/game-logic/node_modules
       - /app/packages/utils/node_modules
+    command: sh -c "pnpm install && pnpm dev"
     depends_on:
       postgres:
         condition: service_healthy

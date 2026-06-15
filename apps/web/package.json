@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^5.2.0",
+    "@kirenina/shared-types": "workspace:*",
+    "@kirenina/utils": "workspace:*",
     "@tresjs/cientos": "^5.7.1",
     "@tresjs/core": "^5.8.1",
     "i18next": "^24.2.2",

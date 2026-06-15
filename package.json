@@ -4,7 +4,7 @@
   "private": true,
   "description": "Kirenina — Plateforme de jeux multijoueur en ligne",
   "scripts": {
-    "dev": "turbo dev",
+    "dev": "pnpm --filter @kirenina/api db:generate && turbo dev",
     "build": "turbo build",
     "lint": "turbo lint",
     "test": "turbo test",
